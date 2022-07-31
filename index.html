@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website</title>
+
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+<body>
+    <div id="levelCanStorage" style="display: none">
+        <canvas id="levelCan1"></canvas>
+        <canvas id="levelCan2"></canvas>
+        <canvas id="levelCan3"></canvas>
+    </div>
+    <div id="imageStorage" style="display: none">
+        <img id="playerCharacter1" src="C:\Users\SebastianH2000\Desktop\Coding - Games\gussies-game-one\images\player-character-1.png">
+        <img id="enemyType0001" src="C:\Users\SebastianH2000\Desktop\Coding - Games\gussies-game-one\images\enemy-type-0-1.png">
+        <img id="wallType0001" src="C:\Users\SebastianH2000\Desktop\Coding - Games\gussies-game-one\images\wall-type-0-1-1.png">
+    </div>
+    <canvas id="myCanvas"></canvas>
+    <div id="gameMenuDiv">
+        <h1>WORLD'S CUTEST GAME</h1>
+        <h2 style="margin: 0px;">Levels</h2>
+        <div class="levelContainer" style="margin: 0px;">
+            <p class="unlocked" onclick="startGame(1)" id="levelBtn1">1</p>
+            <p id="levelBtn2" onclick="startGame(2)">2</p>
+            <p id="levelBtn3" onclick="startGame(3)">3</p>
+        </div>
+        <hr style="width: 500px; margin: 40px 0px 40px 0px"></hr>
+        <h2 style="margin: 0px">Difficulty Options:</h2>
+        <div class="levelContainer" style="margin: 0px; width: 600px">
+            <h2 id="normalBtn" onclick="changeDifficulty(1)" class="difficultyBtn selected" style="width: 200px; text-align: center">Normal</h2>
+            <h2 id="hardBtn" onclick="changeDifficulty(2)" class="difficultyBtn" style="width: 200px; text-align: center">Hard</h2>
+            <h2 id="impossibleBtn" onclick="changeDifficulty(3)" class="difficultyBtn" style="width: 200px; text-align: center">Impossible</h2>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="javascripts/vector.js"></script>
+    <script type="text/javascript" src="javascripts/canvas.js"></script>
+    <script type="text/javascript" src="javascripts/control.js"></script>
+    <script type="text/javascript" src="javascripts/levelData.js"></script>
+    <script type="text/javascript" src="javascripts/level.js"></script>
+    <script type="text/javascript" src="javascripts/game.js"></script>
+</body>
+
+</html>

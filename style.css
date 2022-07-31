@@ -1,0 +1,79 @@
+body {
+    transform-origin: center center;
+    margin: 0px;
+    padding: 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    background-color: black;
+    width: 100%;
+    height: 100%;
+}
+
+#gameMenuDiv {
+    background-color: darkblue;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: lightblue;
+}
+
+#gameMenuDiv h1 {
+    font-size: 60px;
+}
+
+#gameMenuDiv h2 {
+    font-size: 40px;
+}
+
+.levelContainer {
+    width: 400px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 24px;
+}
+
+.levelContainer p {
+    padding: 4px 20px;
+    border-radius: 4px;
+    background-color: red;
+}
+
+.levelContainer p.unlocked {
+    background-color: #566bf2;
+}
+
+.levelContainer p.unlocked:hover {
+    background-color: white;
+    cursor: pointer;
+}
+
+.difficultyBtn {
+    opacity: 0.5;
+}
+
+.difficultyBtn:hover {
+    opacity: 0.75;
+    text-shadow: 0px 0px 3px white;
+    cursor: pointer;
+}
+
+.difficultyBtn.selected {
+    opacity: 1;
+    text-shadow: 0px 0px 8px white;
+}
+
+#normalBtn.selected {
+    color: gold;
+}
+
+#hardBtn.selected {
+    color: red;
+}
+
+#impossibleBtn.selected {
+    color: black;
+}
