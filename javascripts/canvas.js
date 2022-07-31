@@ -7,7 +7,7 @@ can.width = canX;
 can.height = canY;
 
 
-var screenScale = 0.75;
+var screenScale = 1;
 
 
 
