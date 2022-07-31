@@ -37,7 +37,7 @@ function startGame (value) {
     }
 }
 //levelWon(1);
-//startGame(2);
+//startGame(1);
 
 function levelWon(levelNum) {
     document.getElementById('levelBtn' + (levelNum + 1)).classList.add('unlocked');
@@ -60,21 +60,11 @@ function changeDifficulty(difficultyNum) {
         document.getElementById('hardBtn').classList.add('selected');
         document.getElementById('impossibleBtn').classList.remove('selected');
     }
-    /*else if (difficultyNum === 3) {
+    else if (difficultyNum === 3) {
         difficulty = 3;
         document.getElementById('normalBtn').classList.remove('selected');
         document.getElementById('hardBtn').classList.remove('selected');
         document.getElementById('impossibleBtn').classList.add('selected');
-    }*/
-
-    if (difficulty === 1) {
-        levels[0].enemyAmt = 5;
-    }
-    if (difficulty === 2) {
-        levels[0].enemyAmt = 8;
-    }
-    if (difficulty === 3) {
-        levels[0].enemyAmt = 10;
     }
 }
 
@@ -273,12 +263,12 @@ function mainLoop() {
         ctx.drawImage(document.getElementById('levelCan' + currentLevel),0-cameraXOff,0-cameraYOff,levels[currentLevel - 1].width*tileSize,levels[currentLevel - 1].height*tileSize);
 
         ctx.fillStyle = 'red';
-        for (let i = 0; i < levels[(currentLevel - 1)].enemyAmt; i++) {
-            levels[currentLevel - 1].enemies[i].move();
+        for (let i = 0; i < levels[(currentLevel - 1)].enemyAmt[difficulty - 1]; i++) {
+            levels[currentLevel - 1].enemies[difficulty - 1][i].move();
             //ctx.fillRect(((levels[0].enemies[i].xPos*tileSize) - 20)-cameraXOff, ((levels[0].enemies[i].yPos*tileSize) - 20)-cameraYOff, tileSize, tileSize);
-            ctx.drawImage(document.getElementById('enemyType0001'), ((levels[currentLevel - 1].enemies[i].xPos*tileSize) - 20)-cameraXOff, ((levels[currentLevel - 1].enemies[i].yPos*tileSize) - 20)-cameraYOff, tileSize, tileSize);
+            ctx.drawImage(document.getElementById('enemyType0001'), ((levels[currentLevel - 1].enemies[difficulty - 1][i].xPos*tileSize) - 20)-cameraXOff, ((levels[currentLevel - 1].enemies[difficulty - 1][i].yPos*tileSize) - 20)-cameraYOff, tileSize, tileSize);
 
-            if ((playerX < levels[currentLevel - 1].enemies[i].xPos+1 &&  playerX > levels[currentLevel - 1].enemies[i].xPos-1) && (playerY < levels[currentLevel - 1].enemies[i].yPos+1 &&  playerY > levels[currentLevel - 1].enemies[i].yPos-1)) {
+            if ((playerX < levels[currentLevel - 1].enemies[difficulty - 1][i].xPos+0.98 &&  playerX > levels[currentLevel - 1].enemies[difficulty - 1][i].xPos-0.98) && (playerY < levels[currentLevel - 1].enemies[difficulty - 1][i].yPos+0.98 &&  playerY > levels[currentLevel - 1].enemies[difficulty - 1][i].yPos-0.98)) {
                 playerX = levels[currentLevel - 1].spawnX;
                 playerY = levels[currentLevel - 1].spawnY;
                 levelTimer = 0;

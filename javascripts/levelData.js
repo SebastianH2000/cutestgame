@@ -3,150 +3,111 @@ var difficulty = 1;
 
 //level 1
 levels[0] = {
-    width: 50,
+    width: 49,
     height: 20,
     goalAmt: 0,
-    enemyAmt: 5,
-    spawnX: 7,
-    spawnY: 10,
-    enemies: [{
-        type: 0,
-        xPos: 15,
-        yPos: 15,
-        move: function () {
-            this.yPos = Math.sin(levelTimer)*7.5 + 10;
-        }
-    },
-    {
-        type: 0,
-        xPos: 20,
-        yPos: 15,
-        move: function () {
-            this.yPos = Math.sin(levelTimer+Math.PI)*7.5 + 10;
-        }
-    },
-    {
-        type: 0,
-        xPos: 25,
-        yPos: 15,
-        move: function () {
-            this.yPos = Math.sin(levelTimer)*7.5 + 10;
-        }
-    },
-    {
-        type: 0,
-        xPos: 30,
-        yPos: 15,
-        move: function () {
-            this.yPos = Math.sin(levelTimer+Math.PI)*7.5 + 10;
-        }
-    },
-    {
-        type: 0,
-        xPos: 35,
-        yPos: 15,
-        move: function () {
-            this.yPos = Math.sin(levelTimer)*7.5 + 10;
-        }
-    }],
+    enemyAmt: [5,8,12],
+    spawnX: 3.5,
+    spawnY: 8.5,
+    enemies: [[],[],[]],
 
     world: [{
-        xPos: 4,
-        yPos: 8,
-        width: 6,
-        height: 4
+        xPos: 1,
+        yPos: 7,
+        width: 5,
+        height: 3
     },
     {
-        xPos: 10,
-        yPos: 2,
-        width: 30,
-        height: 16
+        xPos: 6,
+        yPos: 1,
+        width: 29,
+        height: 15
     },
     {
-        xPos: 40,
-        yPos: 8,
-        width: 6,
-        height: 4
+        xPos: 35,
+        yPos: 7,
+        width: 5,
+        height: 3
     }],
 
     walls: [{
-        xPos: 3,
-        yPos: 7,
-        width: 7,
+        xPos: 0,
+        yPos: 6,
+        width: 6,
         height: 1
     },
     {
-        xPos: 9,
-        yPos: 2,
-        width: 1,
-        height: 5
-    },
-    {
-        xPos: 9,
+        xPos: 5,
         yPos: 1,
-        width: 32,
+        width: 1,
+        height: 5
+    },
+    {
+        xPos: 5,
+        yPos: 0,
+        width: 31,
         height: 1
     },
     {
-        xPos: 40,
-        yPos: 2,
+        xPos: 35,
+        yPos: 1,
         width: 1,
         height: 5
+    },
+    {
+        xPos: 35,
+        yPos: 6,
+        width: 6,
+        height: 1
     },
     {
         xPos: 40,
         yPos: 7,
-        width: 7,
+        width: 1,
+        height: 3
+    },
+    {
+        xPos: 35,
+        yPos: 10,
+        width: 6,
         height: 1
     },
     {
-        xPos: 46,
-        yPos: 8,
+        xPos: 35,
+        yPos: 11,
         width: 1,
         height: 4
     },
     {
-        xPos: 40,
-        yPos: 12,
-        width: 7,
+        xPos: 5,
+        yPos: 15,
+        width: 31,
         height: 1
     },
     {
-        xPos: 40,
-        yPos: 13,
-        width: 1,
-        height: 5
-    },
-    {
-        xPos: 9,
-        yPos: 18,
-        width: 32,
-        height: 1
-    },
-    {
-        xPos: 9,
-        yPos: 13,
-        width: 1,
-        height: 5
-    },
-    {
-        xPos: 3,
-        yPos: 12,
-        width: 7,
-        height: 1
-    },
-    {
-        xPos: 3,
-        yPos: 8,
+        xPos: 5,
+        yPos: 11,
         width: 1,
         height: 4
+    },
+    {
+        xPos: 0,
+        yPos: 10,
+        width: 6,
+        height: 1
+    },
+    {
+        xPos: 0,
+        yPos: 7,
+        width: 1,
+        height: 3
     }],
 
     victory: [{
-        xPos: 40,
-        yPos: 8,
-        width: 6,
-        height: 4
+        xPos: 35,
+        yPos: 7,
+        width: 5,
+        height: 3
     }],
 }
 
@@ -155,116 +116,10 @@ levels[1] = {
     width: 56,
     height: 20,
     goalAmt: 0,
-    enemyAmt: 13,
-    spawnX: 5.5,
+    enemyAmt: [13,15,22],
+    spawnX: 4.5,
     spawnY: 14.5,
-    enemies: [{
-        type: 0,
-        xPos: 8.5,
-        yPos: 14.5,
-        move: function () {
-            this.yPos = Math.sin(levelTimer*1.5)*4 + 14.5;
-        }
-    },
-    {
-        type: 0,
-        xPos: 12.5,
-        yPos: 14.5,
-        move: function () {
-            this.yPos = Math.sin(levelTimer*1.5+Math.PI)*4 + 14.5;
-        }
-    },
-    {
-        type: 0,
-        xPos: 16.5,
-        yPos: 14.5,
-        move: function () {
-            this.yPos = Math.sin(levelTimer*1.5)*4 + 14.5;
-        }
-    },
-    {
-        type: 0,
-        xPos: 19.5,
-        yPos: 14.5,
-        move: function () {
-            this.yPos = Math.sin(levelTimer*1.5+Math.PI)*4 + 14.5;
-        }
-    },
-
-    {
-        type: 0,
-        xPos: 25,
-        yPos: 10.5,
-        move: function () {
-            this.xPos = Math.sin(levelTimer*1.5)*4.5 + 25;
-        }
-    },
-    {
-        type: 0,
-        xPos: 25,
-        yPos: 9.5,
-        move: function () {
-            this.xPos = Math.sin(levelTimer*1.5+Math.PI)*4.5 + 25;
-        }
-    },
-
-    {
-        type: 0,
-        xPos: 30.5,
-        yPos: 4.5,
-        move: function () {
-            this.yPos = Math.sin(levelTimer*1.5)*4 + 5.5;
-        }
-    },
-    {
-        type: 0,
-        xPos: 33.5,
-        yPos: 4.5,
-        move: function () {
-            this.yPos = Math.sin(levelTimer*1.5+Math.PI)*4 + 5.5;
-        }
-    },
-    {
-        type: 0,
-        xPos: 36.5,
-        yPos: 4.5,
-        move: function () {
-            this.yPos = Math.sin(levelTimer*1.5)*4 + 5.5;
-        }
-    },
-    {
-        type: 0,
-        xPos: 39.5,
-        yPos: 4.5,
-        move: function () {
-            this.yPos = Math.sin(levelTimer*1.5+Math.PI)*4 + 5.5;
-        }
-    },
-
-    {
-        type: 0,
-        xPos: 46.5,
-        yPos: 4.5,
-        move: function () {
-            this.yPos = Math.sin(levelTimer*1.5)*4 + 5.5;
-        }
-    },
-    {
-        type: 0,
-        xPos: 47.5,
-        yPos: 4.5,
-        move: function () {
-            this.yPos = Math.sin(levelTimer*1.5)*3 + 5.5;
-        }
-    },
-    {
-        type: 0,
-        xPos: 48.5,
-        yPos: 4.5,
-        move: function () {
-            this.yPos = Math.sin(levelTimer*1.5)*2 + 5.5;
-        }
-    },],
+    enemies: [[],[],[]],
 
     world: [{
         xPos: 1,
@@ -365,10 +220,3 @@ levels[1] = {
         height: 3
     }],
 }
-
-enemyTypes = [{
-    size: 1,
-},
-{
-
-}]
