@@ -245,7 +245,7 @@ levels[1].enemies[0] = [{
 },
 {
     type: 0,
-    xPos: 33.5,
+    xPos: 34.5,
     yPos: 4.5,
     move: function () {
         this.yPos = Math.sin(levelTimer*1.5+Math.PI)*4 + 5.5;
@@ -253,7 +253,7 @@ levels[1].enemies[0] = [{
 },
 {
     type: 0,
-    xPos: 36.5,
+    xPos: 38.5,
     yPos: 4.5,
     move: function () {
         this.yPos = Math.sin(levelTimer*1.5)*4 + 5.5;
@@ -261,7 +261,7 @@ levels[1].enemies[0] = [{
 },
 {
     type: 0,
-    xPos: 39.5,
+    xPos: 42.5,
     yPos: 4.5,
     move: function () {
         this.yPos = Math.sin(levelTimer*1.5+Math.PI)*4 + 5.5;
@@ -569,6 +569,211 @@ levels[1].enemies[2] = [{
 },]
 
 
+
+
+function level3Move(timer,other) {
+    let thisLoop = timer;
+    let returnArr = [{xPos: 0, yPos: 0}];
+    if (other === undefined) {
+        if (thisLoop <= 0.01176) {
+            returnArr.yPos = (thisLoop*170)+1.5;
+            returnArr.xPos = 46.5;
+        }
+        else if (thisLoop <= 0.24705) {
+            returnArr.yPos = 3.5;
+            returnArr.xPos = 46.5 - ((thisLoop-0.01176)*170);
+        }
+        else if (thisLoop <= 0.25881) {
+            returnArr.yPos = 3.5 - ((thisLoop-0.24705)*170);
+            returnArr.xPos = 6.5;
+        }
+        else if (thisLoop <= 0.49410) {
+            returnArr.yPos = 1.5;
+            returnArr.xPos = ((thisLoop-0.25881)*170) + 6.5;
+        }
+        else if (thisLoop <= 0.51174) {
+            returnArr.yPos = ((thisLoop-0.49410)*170)+1.5;
+            returnArr.xPos = 46.5;
+        }
+        else if (thisLoop <= 0.74703) {
+            returnArr.yPos = 4.5;
+            returnArr.xPos = 46.5 - ((thisLoop-0.51174)*170);
+        }
+        else if (thisLoop <= 0.76467) {
+            returnArr.yPos = 4.5 - ((thisLoop-0.74703)*170);
+            returnArr.xPos = 6.5;
+        }
+        else if (thisLoop <= 1) {
+            returnArr.yPos = 1.5;
+            returnArr.xPos = ((thisLoop-0.76467)*170) + 6.5;
+        }
+    }
+    else if (other) {
+        if (thisLoop <= 0.01176) {
+            returnArr.yPos = (thisLoop*170*2)+1.5;
+            returnArr.xPos = 46.5;
+        }
+        else if (thisLoop <= 0.24705) {
+            returnArr.yPos = 5.5;
+            returnArr.xPos = 46.5 - ((thisLoop-0.01176)*170);
+        }
+        else if (thisLoop <= 0.25881) {
+            returnArr.yPos = 5.5 - ((thisLoop-0.24705)*170*2);
+            returnArr.xPos = 6.5;
+        }
+        else if (thisLoop <= 0.49410) {
+            returnArr.yPos = 1.5;
+            returnArr.xPos = ((thisLoop-0.25881)*170) + 6.5;
+        }
+        else if (thisLoop <= 0.51174) {
+            returnArr.yPos = ((thisLoop-0.49410)*170*1.66666)+1.5;
+            returnArr.xPos = 46.5;
+        }
+        else if (thisLoop <= 0.74703) {
+            returnArr.yPos = 6.5;
+            returnArr.xPos = 46.5 - ((thisLoop-0.51174)*170);
+        }
+        else if (thisLoop <= 0.76467) {
+            returnArr.yPos = 6.5 - ((thisLoop-0.74703)*170*1.66666);
+            returnArr.xPos = 6.5;
+        }
+        else if (thisLoop <= 1) {
+            returnArr.yPos = 1.5;
+            returnArr.xPos = ((thisLoop-0.76467)*170) + 6.5;
+        }
+    }
+    return returnArr;
+}
+
+levels[2].enemies[0] = [{
+    type: 0,
+    xPos: 26.5,
+    yPos: 3.5,
+    move: function () {
+        let thisLoop = (levelTimer/20) % 1;
+        let posArr = level3Move(thisLoop);
+        this.xPos = posArr.xPos;
+        this.yPos = posArr.yPos;
+    }
+},{
+    type: 0,
+    xPos: 26.5,
+    yPos: 14.5,
+    move: function () {
+        let thisLoop = (levelTimer/20+0.5) % 1;
+        let posArr = level3Move(thisLoop);
+        this.xPos = posArr.xPos;
+        this.yPos = posArr.yPos;
+    }
+},
+
+{
+    type: 0,
+    xPos: 26.5,
+    yPos: 3.5,
+    move: function () {
+        let thisLoop = (levelTimer/20+0.125) % 1;
+        let posArr = level3Move(thisLoop,true);
+        this.xPos = posArr.xPos;
+        this.yPos = posArr.yPos;
+    }
+},{
+    type: 0,
+    xPos: 26.5,
+    yPos: 14.5,
+    move: function () {
+        let thisLoop = (levelTimer/20+0.625) % 1;
+        let posArr = level3Move(thisLoop,true);
+        this.xPos = posArr.xPos;
+        this.yPos = posArr.yPos;
+    }
+},
+
+{
+    type: 0,
+    xPos: 26.5,
+    yPos: 3.5,
+    move: function () {
+        let thisLoop = (levelTimer/20+0.25) % 1;
+        let posArr = level3Move(thisLoop);
+        this.xPos = posArr.xPos;
+        this.yPos = posArr.yPos;
+    }
+},{
+    type: 0,
+    xPos: 26.5,
+    yPos: 14.5,
+    move: function () {
+        let thisLoop = (levelTimer/20+0.75) % 1;
+        let posArr = level3Move(thisLoop);
+        this.xPos = posArr.xPos;
+        this.yPos = posArr.yPos;
+    }
+},
+
+{
+    type: 0,
+    xPos: 26.5,
+    yPos: 3.5,
+    move: function () {
+        let thisLoop = (levelTimer/20+0.375) % 1;
+        let posArr = level3Move(thisLoop,true);
+        this.xPos = posArr.xPos;
+        this.yPos = posArr.yPos;
+    }
+},{
+    type: 0,
+    xPos: 26.5,
+    yPos: 14.5,
+    move: function () {
+        let thisLoop = (levelTimer/20+0.875) % 1;
+        let posArr = level3Move(thisLoop,true);
+        this.xPos = posArr.xPos;
+        this.yPos = posArr.yPos;
+    }
+}]
+
+levels[2].enemies[1] = new Array(12);
+for (let i = 0; i < 12; i++) {
+    levels[2].enemies[1][i] = {
+        type: 0,
+        xPos: 26.5,
+        yPos: 14.5,
+        move: function () {
+            let thisLoop = (levelTimer/12.5+(i*(1/12))) % 1;
+            let posArr = [];
+            if (i % 4 === 0 || i % 4 === 2) {
+                posArr = level3Move(thisLoop);
+            }
+            else {
+                posArr = level3Move(thisLoop,true);
+            }
+            this.xPos = posArr.xPos;
+            this.yPos = posArr.yPos;
+        }
+    }
+}
+
+levels[2].enemies[2] = new Array(16);
+for (let i = 0; i < 16; i++) {
+    levels[2].enemies[2][i] = {
+        type: 0,
+        xPos: 26.5,
+        yPos: 14.5,
+        move: function () {
+            let thisLoop = (levelTimer/12.5+(i*(1/16))+0.9) % 1;
+            let posArr = [];
+            if (i % 16 === 1 || i % 16 === 9 || i % 16 === 2 || i % 16 === 4 || i % 16 === 5 || i % 16 === 13 || i % 16 === 14 || i % 16 === 8) {
+                posArr = level3Move(thisLoop);
+            }
+            else {
+                posArr = level3Move(thisLoop,true);
+            }
+            this.xPos = posArr.xPos;
+            this.yPos = posArr.yPos;
+        }
+    }
+}
 
 
 enemyTypes = [{
