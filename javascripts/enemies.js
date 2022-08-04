@@ -335,14 +335,28 @@ levels[1].enemies[1] = [{
     xPos: 25,
     yPos: 10.5,
     move: function () {
-        this.xPos = Math.sin(levelTimer*4-Math.PI/2)*4.5 + 25;
+        this.xPos = Math.sin(levelTimer*2)*2 + 27.5;
+    }
+},{
+    type: 0,
+    xPos: 25,
+    yPos: 10.5,
+    move: function () {
+        this.xPos = Math.sin(levelTimer*2+Math.PI)*2 + 22.5;
     }
 },{
     type: 0,
     xPos: 25,
     yPos: 9.5,
     move: function () {
-        this.xPos = Math.sin(levelTimer*4+Math.PI/2)*4.5 + 25;
+        this.xPos = Math.sin(levelTimer*2+Math.PI)*2 + 27.5;
+    }
+},{
+    type: 0,
+    xPos: 25,
+    yPos: 9.5,
+    move: function () {
+        this.xPos = Math.sin(levelTimer*2)*2 + 22.5;
     }
 },
 
@@ -567,6 +581,7 @@ levels[1].enemies[2] = [{
         this.yPos = Math.sin(levelTimer*3+Math.PI/2)*4 + 5.5;
     }
 },]
+
 
 
 

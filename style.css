@@ -52,6 +52,14 @@ body {
     cursor: pointer;
 }
 
+.levelContainer p.unlocked.pending {
+    background-color: yellow;
+    cursor: default;
+    border: 2px red dotted;
+    color: black;
+    padding: 2px 18px;
+}
+
 .difficultyBtn {
     opacity: 0.5;
 }

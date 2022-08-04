@@ -2,7 +2,7 @@ var fps = 50;
 var fpsInv = 1000/fps;
 
 var lastPageX = 0;
-var lastPageY = 0;  
+var lastPageY = 0;
 
 var gameState = 'menu';
 var level = 1;
@@ -22,6 +22,13 @@ var pressLeft = false;
 
 var highlights = false;
 
+var deathTimer = 0;
+var deathTimerSet = 3.5;
+var deathXPos = 0;
+var deathYPos = 0;
+var levelTimerDeath = 0;
+var playState = 'playing';
+
 
 
 function startGame (value) {
@@ -34,6 +41,7 @@ function startGame (value) {
         cameraY = levels[value-1].spawnY;
         playerX = levels[value-1].spawnX;
         playerY = levels[value-1].spawnY;
+        playState = 'playing';
     }
 }
 //levelWon(1);
@@ -141,6 +149,12 @@ function movePlayer(xVal,yVal) {
 
 function mainLoop() {
     if (gameState === 'play') {
+        if (map[27]) {
+            gameState = 'menu';
+        }
+    }
+
+    if (gameState === 'play') {
         document.getElementById('myCanvas').style.display = '';
         document.getElementById('gameMenuDiv').style.display = 'none';
 
@@ -157,122 +171,125 @@ function mainLoop() {
         let cornerX = 0-(canX/screenScale)/2;
         let cornerY = 0-(canY/screenScale)/2;
 
-        ctx.fillStyle = rgbToHex(0);
+        ctx.fillStyle = "black";
         ctx.fillRect(cornerX, cornerY, canX/screenScale, canY/screenScale);
+        
 
-        //controls
-        if (map[87] || map[38]) {
-            pressUp = true;
-        }
-        else {
-            pressUp = false;
-        }
-        if (map[68] || map[39]) {
-            pressRight = true;
-        }
-        else {
-            pressRight = false;
-        }
-        if (map[83] || map[40]) {
-            pressDown = true;
-        }
-        else {
-            pressDown = false;
-        }
-        if (map[65] || map[37]) {
-            pressLeft = true;
-        }
-        else {
-            pressLeft = false;
-        }
+        if (playState === 'playing') {
+            //controls
+            if (map[87] || map[38]) {
+                pressUp = true;
+            }
+            else {
+                pressUp = false;
+            }
+            if (map[68] || map[39]) {
+                pressRight = true;
+            }
+            else {
+                pressRight = false;
+            }
+            if (map[83] || map[40]) {
+                pressDown = true;
+            }
+            else {
+                pressDown = false;
+            }
+            if (map[65] || map[37]) {
+                pressLeft = true;
+            }
+            else {
+                pressLeft = false;
+            }
 
-        /*if (pressUp && !pressDown) {
-            playerVelY = Math.min(playerVelY + 0.5,3);
-        }
-        if (pressDown && !pressUp) {
-            playerVelY = Math.min(playerVelY - 0.5,0);
-        }
-        if (pressRight && !pressLeft) {
-            playerVelX = Math.min(playerVelX + 0.5,3);
-        }
-        if (pressLeft && !pressRight) {
-            playerVelX = Math.min(playerVelX - 0.5,0);
-        }
+            if (pressUp && !pressDown && ((!pressLeft && !pressRight) || (pressLeft && pressRight))) {
+                //playerY -= 0.15;
+                movePlayer(0,-0.15);
+            }
+            else if (!pressUp && pressDown && ((!pressLeft && !pressRight) || (pressLeft && pressRight))) {
+                //playerY += 0.15;
+                movePlayer(0,0.15);
+            }
+            else if (((!pressUp && !pressDown) || (pressUp && pressDown)) && !pressLeft && pressRight) {
+                //playerX += 0.15;
+                movePlayer(0.15,0);
+            }
+            else if (((!pressUp && !pressDown) || (pressUp && pressDown)) && pressLeft && !pressRight) {
+                //playerX -= 0.15;
+                movePlayer(-0.15,0);
+            }
 
-        playerX += playerVelX/25;
-        playerY -= playerVelY/25;
-        let playerVel = new Vector(playerVelX,playerVelY);
-        if (playerVel.mag() > 3) {
-            playerVel.normalize();
-            playerVel.mult(3);
-            playerVelX = playerVel.x;
-            playerVelY = playerVel.y;
-        }
-
-        playerVelX *= 0.9;
-        playerVelY *= 0.9;*/
-
-        if (pressUp && !pressDown && ((!pressLeft && !pressRight) || (pressLeft && pressRight))) {
-            //playerY -= 0.15;
-            movePlayer(0,-0.15);
-        }
-        else if (!pressUp && pressDown && ((!pressLeft && !pressRight) || (pressLeft && pressRight))) {
-            //playerY += 0.15;
-            movePlayer(0,0.15);
-        }
-        else if (((!pressUp && !pressDown) || (pressUp && pressDown)) && !pressLeft && pressRight) {
-            //playerX += 0.15;
-            movePlayer(0.15,0);
-        }
-        else if (((!pressUp && !pressDown) || (pressUp && pressDown)) && pressLeft && !pressRight) {
-            //playerX -= 0.15;
-            movePlayer(-0.15,0);
-        }
-
-        else if (pressUp && !pressDown && !pressLeft && pressRight) {
-            //playerY -= 0.15*0.707;
-            //playerX += 0.15*0.707;
-            movePlayer(0.15*0.707,-(0.15*0.707));
-        }
-        else if (pressUp && !pressDown && pressLeft && !pressRight) {
-            //playerY -= 0.15*0.707;
-            //playerX -= 0.15*0.707;
-            movePlayer(-(0.15*0.707),-(0.15*0.707));
-        }
-        else if (!pressUp && pressDown && !pressLeft && pressRight) {
-            //playerY += 0.15*0.707;
-            //playerX += 0.15*0.707;
-            movePlayer(0.15*0.707,0.15*0.707);
-        }
-        else if (!pressUp && pressDown && pressLeft && !pressRight) {
-            //playerY += 0.15*0.707;
-            //playerX -= 0.15*0.707;
-            movePlayer(-(0.15*0.707),0.15*0.707);
-        }
+            else if (pressUp && !pressDown && !pressLeft && pressRight) {
+                //playerY -= 0.15*0.707;
+                //playerX += 0.15*0.707;
+                movePlayer(0.15*0.707,-(0.15*0.707));
+            }
+            else if (pressUp && !pressDown && pressLeft && !pressRight) {
+                //playerY -= 0.15*0.707;
+                //playerX -= 0.15*0.707;
+                movePlayer(-(0.15*0.707),-(0.15*0.707));
+            }
+            else if (!pressUp && pressDown && !pressLeft && pressRight) {
+                //playerY += 0.15*0.707;
+                //playerX += 0.15*0.707;
+                movePlayer(0.15*0.707,0.15*0.707);
+            }
+            else if (!pressUp && pressDown && pressLeft && !pressRight) {
+                //playerY += 0.15*0.707;
+                //playerX -= 0.15*0.707;
+                movePlayer(-(0.15*0.707),0.15*0.707);
+            }
 
 
 
 
-        levelTimer += fpsInv/1000;
+            levelTimer += fpsInv/1000;
 
-        cameraX = playerX;
-        cameraY = playerY;
+            cameraX = playerX;
+            cameraY = playerY;
+        }
+        else if (playState === 'dying') {
+            deathTimer -= 1/(fps*deathTimerSet);
+            if (deathTimer <= 0) {
+                playState = 'playing';
+                levelTimer = 0;
+                deathTimer = 0;
+            }
+            else {
+                cameraX = lerp(deathXPos,levels[currentLevel - 1].spawnX,1-(deathTimer*2));
+                cameraY = lerp(deathYPos,levels[currentLevel - 1].spawnY,1-(deathTimer*2));
+                playerX = lerp(deathXPos,levels[currentLevel - 1].spawnX,1-(deathTimer*2));
+                playerY = lerp(deathYPos,levels[currentLevel - 1].spawnY,1-(deathTimer*2));
+                levelTimer = lerp(levelTimerDeath,levels[currentLevel - 1].loopers[difficulty - 1],1-(deathTimer*2));
+            }
+        }
+
+
+
         let cameraXOff = cameraX*tileSize;
         let cameraYOff = cameraY*tileSize;
 
         ctx.drawImage(document.getElementById('levelCan' + currentLevel),0-cameraXOff,0-cameraYOff,levels[currentLevel - 1].width*tileSize,levels[currentLevel - 1].height*tileSize);
 
+        if (playState === 'dying') {
+            ctx.globalAlpha = 0.5;
+        }
         ctx.fillStyle = 'red';
         for (let i = 0; i < levels[(currentLevel - 1)].enemyAmt[difficulty - 1]; i++) {
             levels[currentLevel - 1].enemies[difficulty - 1][i].move();
             //ctx.fillRect(((levels[0].enemies[i].xPos*tileSize) - 20)-cameraXOff, ((levels[0].enemies[i].yPos*tileSize) - 20)-cameraYOff, tileSize, tileSize);
             ctx.drawImage(document.getElementById('enemyType0001'), ((levels[currentLevel - 1].enemies[difficulty - 1][i].xPos*tileSize) - 20)-cameraXOff, ((levels[currentLevel - 1].enemies[difficulty - 1][i].yPos*tileSize) - 20)-cameraYOff, tileSize, tileSize);
 
-            if ((playerX < levels[currentLevel - 1].enemies[difficulty - 1][i].xPos+0.98 &&  playerX > levels[currentLevel - 1].enemies[difficulty - 1][i].xPos-0.98) && (playerY < levels[currentLevel - 1].enemies[difficulty - 1][i].yPos+0.98 &&  playerY > levels[currentLevel - 1].enemies[difficulty - 1][i].yPos-0.98)) {
-                playerX = levels[currentLevel - 1].spawnX;
-                playerY = levels[currentLevel - 1].spawnY;
-                levelTimer = 0;
+            if ((playerX < levels[currentLevel - 1].enemies[difficulty - 1][i].xPos+0.98 &&  playerX > levels[currentLevel - 1].enemies[difficulty - 1][i].xPos-0.98) && (playerY < levels[currentLevel - 1].enemies[difficulty - 1][i].yPos+0.98 &&  playerY > levels[currentLevel - 1].enemies[difficulty - 1][i].yPos-0.98) && playState === 'playing') {
+                playState = 'dying';
+                deathTimer = 0.5;
+                deathXPos = playerX;
+                deathYPos = playerY;
+                levelTimerDeath = absMod(levelTimer, levels[currentLevel - 1].loopers[difficulty - 1]);
             }
+        }
+        if (playState === 'dying') {
+            ctx.globalAlpha = 1;
         }
 
         if (highlights) {
@@ -282,10 +299,16 @@ function mainLoop() {
             //let highlightVal = 1;
             ctx.strokeRect(levels[currentLevel-1].walls[highlightVal].xPos*tileSize-cameraXOff,levels[currentLevel-1].walls[highlightVal].yPos*tileSize-cameraYOff,levels[currentLevel-1].walls[highlightVal].width*tileSize,levels[currentLevel-1].walls[highlightVal].height*tileSize);
         }
+        
 
-        //ctx.fillStyle = 'blue';
-        //ctx.fillRect(-20,-20,tileSize,tileSize);
-        ctx.drawImage(document.getElementById('playerCharacter1'),-20,-20,tileSize,tileSize);
+        if (playState === 'dying') {
+            ctx.globalAlpha = 0.5;
+        }
+        //ctx.drawImage(document.getElementById('playerCharacter1'),-20,-20,tileSize,tileSize);
+        ctx.drawImage(document.getElementById('playerCharacter1'),-20-cameraXOff+(playerX*tileSize),-20-cameraYOff+(playerY*tileSize),tileSize,tileSize);
+        if (playState === 'dying') {
+            ctx.globalAlpha = 1;
+        }
 
         lastPageX = x;
         lastPageY = y;
@@ -320,6 +343,7 @@ map[37] = false;
 map[39] = false;
 
 map[32] = false;
+map[27] = false;
 
 onkeydown = onkeyup = function(e){
   e = e || event; // to deal with IE

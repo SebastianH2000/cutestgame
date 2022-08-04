@@ -19,6 +19,10 @@ function invRemap(iMin,iMax,oMin,oMax,t) {
   return invLerp(oMin,oMax,v);
 }
 
+function absMod(value1,value2) {
+  return ((value1 % value2) + value2) % value2;
+}
+
 //vector class
 class Vector {
   //takes an x parameter and a y parameter

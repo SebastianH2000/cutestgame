@@ -7,6 +7,7 @@ levels[0] = {
     height: 20,
     goalAmt: 0,
     enemyAmt: [5,8,12],
+    loopers: [Math.PI*2,Math.PI/1.5,Math.PI/1.5],
     spawnX: 3.5,
     spawnY: 8.5,
     enemies: [[],[],[]],
@@ -116,7 +117,8 @@ levels[1] = {
     width: 56,
     height: 20,
     goalAmt: 0,
-    enemyAmt: [13,15,22],
+    enemyAmt: [13,17,22],
+    loopers: [Math.PI*2/1.5,Math.PI,Math.PI/1.5],
     spawnX: 4.5,
     spawnY: 14.5,
     enemies: [[],[],[]],
@@ -227,6 +229,123 @@ levels[2] = {
     height: 8,
     goalAmt: 0,
     enemyAmt: [8,12,16],
+    loopers: [5,2.083333,6.25],
+    spawnX: 3.5,
+    spawnY: 5,
+    enemies: [[],[],[]],
+
+    world: [{
+        xPos: 6,
+        yPos: 1,
+        width: 41,
+        height: 1
+    },
+    {
+        xPos: 6,
+        yPos: 2,
+        width: 1,
+        height: 1
+    },
+    {
+        xPos: 1,
+        yPos: 3,
+        width: 52,
+        height: 4
+    },
+    {
+        xPos: 53,
+        yPos: 4,
+        width: 6,
+        height: 2
+    },
+    {
+        xPos: 46,
+        yPos: 2,
+        width: 1,
+        height: 1
+    }],
+
+    walls: [{
+        xPos: 0,
+        yPos: 2,
+        width: 6,
+        height: 1
+    },
+    {
+        xPos: 5,
+        yPos: 1,
+        width: 1,
+        height: 1
+    },
+    {
+        xPos: 5,
+        yPos: 0,
+        width: 43,
+        height: 1
+    },
+    {
+        xPos: 47,
+        yPos: 1,
+        width: 1,
+        height: 1
+    },
+    {
+        xPos: 47,
+        yPos: 2,
+        width: 7,
+        height: 1
+    },
+    {
+        xPos: 53,
+        yPos: 3,
+        width: 7,
+        height: 1
+    },
+    {
+        xPos: 59,
+        yPos: 4,
+        width: 1,
+        height:2
+    },
+    {
+        xPos: 53,
+        yPos: 6,
+        width: 7,
+        height: 1
+    },
+    {
+        xPos: 0,
+        yPos: 7,
+        width: 54,
+        height: 1
+    },
+    {
+        xPos: 0,
+        yPos: 3,
+        width: 1,
+        height: 4
+    },
+    {
+        xPos: 7,
+        yPos: 2,
+        width: 39,
+        height: 1
+    }],
+
+    victory: [{
+        xPos: 53,
+        yPos: 4,
+        width: 6,
+        height: 2
+    }],
+}
+
+//level 4
+levels[3] = {
+    width: 60,
+    height: 8,
+    goalAmt: 0,
+    enemyAmt: [0,0,0],
     spawnX: 3.5,
     spawnY: 5,
     enemies: [[],[],[]],
