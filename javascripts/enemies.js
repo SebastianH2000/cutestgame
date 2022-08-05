@@ -790,6 +790,182 @@ for (let i = 0; i < 16; i++) {
     }
 }
 
+function level4MoveBig(timer,yOff) {
+    let returnArr = [{xPos: 0, yPos: 0}];
+    if (timer < 0.25) {
+        let timerUp = timer * 4 * 5;
+        returnArr.xPos = easeInOutSine((timerUp % 1),0,1,1)*2 + (Math.floor(timerUp)*2) + 1.5;
+        returnArr.yPos = yOff;
+    }
+    else if (timer < 0.5) {
+        let timerUp = (timer - 0.25) * 4 * 5;
+        returnArr.xPos = 11.5;
+        returnArr.yPos = yOff + easeInOutSine((timerUp % 1),0,1,1)*2 + (Math.floor(timerUp)*2);
+    }
+    else if (timer < 0.75) {
+        let timerUp = (timer - 0.5) * 4 * 5;
+        returnArr.xPos = 11.5 - (easeInOutSine((timerUp % 1),0,1,1)*2 + (Math.floor(timerUp)*2));
+        returnArr.yPos = yOff + 10;
+    }
+    else {
+        let timerUp = (timer - 0.75) * 4 * 5;
+        returnArr.xPos = 1.5;
+        returnArr.yPos = yOff + 10 - (easeInOutSine((timerUp % 1),0,1,1)*2 + (Math.floor(timerUp)*2));
+    }
+    return returnArr;
+}
+
+function level4MoveSmall(timer,yOff) {
+    let returnArr = [{xPos: 0, yPos: 0}];
+    if (timer < 0.25) {
+        let timerUp = timer * 4 * 3;
+        returnArr.xPos = easeInOutSine((timerUp % 1),0,1,1)*2 + (Math.floor(timerUp)*2) + 3.5;
+        returnArr.yPos = yOff + 2;
+    }
+    else if (timer < 0.5) {
+        let timerUp = (timer - 0.25) * 4 * 3;
+        returnArr.xPos = 9.5;
+        returnArr.yPos = yOff + easeInOutSine((timerUp % 1),0,1,1)*2 + (Math.floor(timerUp)*2) + 2;
+    }
+    else if (timer < 0.75) {
+        let timerUp = (timer - 0.5) * 4 * 3;
+        returnArr.xPos = 9.5 - (easeInOutSine((timerUp % 1),0,1,1)*2 + (Math.floor(timerUp)*2));
+        returnArr.yPos = yOff + 8;
+    }
+    else {
+        let timerUp = (timer - 0.75) * 4 * 3;
+        returnArr.xPos = 3.5;
+        returnArr.yPos = yOff + 8 - (easeInOutSine((timerUp % 1),0,1,1)*2 + (Math.floor(timerUp)*2));
+    }
+    return returnArr;
+}
+
+levels[3].enemies[0] = new Array(36);
+for (let j = 0; j < 3; j++) {
+    for (let i = 0; i < 12; i++) {
+        levels[3].enemies[0][i+(j*12)] = {
+            type: 0,
+            xPos: 26.5,
+            yPos: 14.5,
+            move: function () {
+                let thisLoop = 0;
+                if (i < 3) {
+                    thisLoop = (levelTimer/20+(0.05)*i)%1;
+                }
+                else if (i < 6) {
+                    thisLoop = (levelTimer/20+(0.05)*i+0.1)%1;
+                }
+                else if (i < 9) {
+                    thisLoop = (levelTimer/20+(0.05)*i+0.2)%1;
+                }
+                else {
+                    thisLoop = (levelTimer/20+(0.05)*i+0.3)%1;
+                }
+                let posArr = [];
+                posArr = level4MoveBig(thisLoop, (j*14) - 0.5 + 7);
+                this.xPos = posArr.xPos;
+                this.yPos = posArr.yPos;
+            }
+        }
+    }
+}
+
+levels[3].enemies[1] = new Array(48);
+for (let j = 0; j < 3; j++) {
+    for (let i = 0; i < 16; i++) {
+        levels[3].enemies[1][i+(j*16)] = {
+            type: 0,
+            xPos: 26.5,
+            yPos: 14.5,
+            move: function () {
+                let thisLoop = 0;
+                let thisSpeed = 10;
+                let speedInv = 1/12;
+                if (i < 4) {
+                    thisLoop = (levelTimer/thisSpeed+(0.05)*i)%1;
+                }
+                else if (i < 8) {
+                    thisLoop = (levelTimer/thisSpeed+(0.05)*i+0.05)%1;
+                }
+                else if (i < 12) {
+                    thisLoop = (levelTimer/thisSpeed+(0.05)*i+0.1)%1;
+                }
+                else {
+                    thisLoop = (levelTimer/thisSpeed+(0.05)*i+0.15)%1;
+                }
+                let posArr = [];
+                posArr = level4MoveBig(thisLoop, (j*14) - 0.5 + 7);
+                this.xPos = posArr.xPos;
+                this.yPos = posArr.yPos;
+            }
+        }
+    }
+}
+
+levels[3].enemies[2] = new Array(66);
+for (let j = 0; j < 3; j++) {
+    for (let i = 0; i < 16; i++) {
+        levels[3].enemies[2][i+(j*16)] = {
+            type: 0,
+            xPos: 26.5,
+            yPos: 14.5,
+            move: function () {
+                let thisLoop = 0;
+                let thisSpeed = 10;
+                let speedInv = 1/12;
+                if (i < 4) {
+                    thisLoop = (levelTimer/thisSpeed+(0.05)*i)%1;
+                }
+                else if (i < 8) {
+                    thisLoop = (levelTimer/thisSpeed+(0.05)*i+0.05)%1;
+                }
+                else if (i < 12) {
+                    thisLoop = (levelTimer/thisSpeed+(0.05)*i+0.1)%1;
+                }
+                else {
+                    thisLoop = (levelTimer/thisSpeed+(0.05)*i+0.15)%1;
+                }
+                let posArr = [];
+                posArr = level4MoveBig(thisLoop, (j*14) - 0.5 + 7);
+                this.xPos = posArr.xPos;
+                this.yPos = posArr.yPos;
+            }
+        }
+    }
+}
+for (let j = 0; j < 3; j++) {
+    for (let i = 0; i < 6; i++) {
+        levels[3].enemies[2][i+(j*6)+48] = {
+            type: 0,
+            xPos: 26.5,
+            yPos: 14.5,
+            move: function () {
+                let thisLoop = 0;
+                let thisSpeed = 6;
+                if (j > 0) {
+                    if (i < 3) {
+                        thisLoop = (levelTimer/thisSpeed+(0.08333)*i)%1;
+                    }
+                    else {
+                        thisLoop = (levelTimer/thisSpeed+(0.08333)*i+0.25)%1;
+                    }
+                }
+                else {
+                    if (i < 3) {
+                        thisLoop = (levelTimer/thisSpeed+(0.08333)*i+0.08333)%1;
+                    }
+                    else {
+                        thisLoop = (levelTimer/thisSpeed+(0.08333)*i+0.33333)%1;
+                    }
+                }
+                let posArr = [];
+                posArr = level4MoveSmall(thisLoop, (j*14) - 0.5 + 7);
+                this.xPos = posArr.xPos;
+                this.yPos = posArr.yPos;
+            }
+        }
+    }
+}
 
 enemyTypes = [{
     size: 1,

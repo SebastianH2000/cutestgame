@@ -1,4 +1,4 @@
-var levels = new Array(3);
+var levels = new Array(4);
 var difficulty = 1;
 
 //level 1
@@ -342,116 +342,74 @@ levels[2] = {
 
 //level 4
 levels[3] = {
-    width: 60,
-    height: 8,
+    width: 13,
+    height: 51,
     goalAmt: 0,
-    enemyAmt: [0,0,0],
-    spawnX: 3.5,
-    spawnY: 5,
+    enemyAmt: [36,48,66],
+    loopers: [5,2.5,2.5],
+    spawnX: 6.5,
+    spawnY: 47.5,
     enemies: [[],[],[]],
 
     world: [{
-        xPos: 6,
+        xPos: 5,
         yPos: 1,
-        width: 41,
-        height: 1
-    },
-    {
-        xPos: 6,
-        yPos: 2,
-        width: 1,
-        height: 1
+        width: 3,
+        height: 5
     },
     {
         xPos: 1,
-        yPos: 3,
-        width: 52,
-        height: 4
-    },
-    {
-        xPos: 53,
-        yPos: 4,
-        width: 6,
-        height: 2
-    },
-    {
-        xPos: 46,
-        yPos: 2,
-        width: 1,
-        height: 1
+        yPos: 6,
+        width: 11,
+        height: 44
     }],
 
     walls: [{
         xPos: 0,
-        yPos: 2,
-        width: 6,
+        yPos: 5,
+        width: 5,
         height: 1
-    },
-    {
-        xPos: 5,
+    },{
+        xPos: 4,
         yPos: 1,
-        width: 1,
-        height: 1
-    },
-    {
-        xPos: 5,
-        yPos: 0,
-        width: 43,
-        height: 1
-    },
-    {
-        xPos: 47,
-        yPos: 1,
-        width: 1,
-        height: 1
-    },
-    {
-        xPos: 47,
-        yPos: 2,
-        width: 7,
-        height: 1
-    },
-    {
-        xPos: 53,
-        yPos: 3,
-        width: 7,
-        height: 1
-    },
-    {
-        xPos: 59,
-        yPos: 4,
-        width: 1,
-        height:2
-    },
-    {
-        xPos: 53,
-        yPos: 6,
-        width: 7,
-        height: 1
-    },
-    {
-        xPos: 0,
-        yPos: 7,
-        width: 54,
-        height: 1
-    },
-    {
-        xPos: 0,
-        yPos: 3,
         width: 1,
         height: 4
-    },
-    {
-        xPos: 7,
-        yPos: 2,
-        width: 39,
+    },{
+        xPos: 4,
+        yPos: 0,
+        width: 5,
         height: 1
+    },{
+        xPos: 8,
+        yPos: 1,
+        width: 1,
+        height: 4
+    },{
+        xPos: 8,
+        yPos: 5,
+        width: 6,
+        height: 1
+    },{
+        xPos: 12,
+        yPos: 6,
+        width: 1,
+        height: 44
+    },{
+        xPos: 0,
+        yPos: 50,
+        width: 15,
+        height: 1
+    },{
+        xPos: 0,
+        yPos: 6,
+        width: 1,
+        height: 44
     }],
 
     victory: [{
-        xPos: 53,
-        yPos: 4,
-        width: 6,
-        height: 2
+        xPos: 5,
+        yPos: 1,
+        width: 3,
+        height: 5
     }],
 }

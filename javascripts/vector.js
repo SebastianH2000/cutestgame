@@ -23,6 +23,10 @@ function absMod(value1,value2) {
   return ((value1 % value2) + value2) % value2;
 }
 
+function easeInOutSine (t, b, c, d) {
+  return -c / 2 * (Math.cos(Math.PI * t / d) - 1) + b;
+}
+
 //vector class
 class Vector {
   //takes an x parameter and a y parameter

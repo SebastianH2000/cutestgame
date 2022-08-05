@@ -23,7 +23,7 @@ var pressLeft = false;
 var highlights = false;
 
 var deathTimer = 0;
-var deathTimerSet = 3.5;
+var deathTimerSet = 2.5;
 var deathXPos = 0;
 var deathYPos = 0;
 var levelTimerDeath = 0;
@@ -148,6 +148,7 @@ function movePlayer(xVal,yVal) {
 }
 
 function mainLoop() {
+    window.scrollTo(0, 0);
     if (gameState === 'play') {
         if (map[27]) {
             gameState = 'menu';
